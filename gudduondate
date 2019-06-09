@@ -1,0 +1,71 @@
+Guddu on a Date Problem Code: KS2
+Add problem to Todo list
+Submit
+
+  
+Read problem statements in Hindi, Bengali, Mandarin Chinese, Russian, and Vietnamese as well.
+Guddu likes a girl that loves playing with numbers. She agreed to go on a date with Guddu, but only if he can solve the following problem:
+
+An integer is round if it is greater than 0 and the sum of its digits in decimal representation is a multiple of 10. Find the N-th smallest round integer.
+
+However, Guddu does not like playing with numbers at all and he is unable to solve this problem, so he begs you to solve it for him. In return, he will definitely give you a treat.
+
+Input
+The first line of the input contains a single integer T denoting the number of test cases. The description of T test cases follows.
+The first and only line of each test case contains a single integer N.
+Output
+For each test case, print a single line containing the N-th round integer. It is guaranteed that this number is smaller than 264.
+
+Constraints
+1≤T≤105
+1≤N≤1018
+Subtasks
+Subtask #1 (30 points):
+
+1≤T≤10
+1≤N≤105
+Subtask #2 (70 points): original constraints
+
+Example Input
+1
+2
+Example Output
+28
+Explanation
+Example case 1: The smallest round integer is 19 and the second smallest is 28.
+
+Author:	4★kartik_354
+Date Added:	25-04-2019
+Time Limit:	1 secs
+Source Limit:	50000 Bytes
+
+import math
+
+def myfunc(parlist):
+	sumvar=int(0)
+	for temv in parlist[0]:
+		sumvar=sumvar+temv	
+	if(sumvar%10==0):		
+		parlist[1]=parlist[1]+1
+		if(parlist[1]==n):
+			print(int(parlist[4]))
+			return 1
+		else:
+			return 0
+				#t1=[int(x) for x in str(k)]
+j=int(input())
+i=j
+while(i>0):	
+	place=0
+	i=i-1
+	n=int(input())
+	for k in range(1,2**64):
+		strnumv=str(k)
+		listnum=[int(x) for x in strnumv]
+		parlist=[listnum,place,n,k,strnumv]
+		if(myfunc(parlist
+                          )==1):			
+			break
+		else:			
+			place=parlist[1]
+			continue
