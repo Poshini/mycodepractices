@@ -39,6 +39,12 @@ Languages:	C, CPP14, JAVA, PYTH, PYTH 3
 
 
 
+
+
+
+
+
+
 #include<iostream>
 #include<cstdlib>
 
@@ -49,81 +55,38 @@ using namespace std;
 
 
 int main() {
-    int totNoOfDays,ntc;
-    cin>>ntc;
-    for(int l1=0;l1<ntc;l1++){
-        int noofdaysproxiespossible=0,presentdays=0,absentdays=0;
-
-        cin>>totNoOfDays;
-        char attendence[totNoOfDays+1];
-        for(int l2=0;l2<totNoOfDays;l2++){
-            //scan attendednce
-            cin>>attendence[l2];
-        }
-        attendence[totNoOfDays]='\0';
-          ///
-        //cout<<"attendence="<<attendence<<endl;
-
-
-        for(int l2=0;l2<totNoOfDays;l2++){
-            //scan attendednce
-            if(attendence[l2]=='P')
-                presentdays++;
-
-            else if(attendence[l2]=='A')
-                absentdays++;
-        }
-        ///
-        //cout<<"debug present days="<<presentdays<<" absent days="<<absentdays<<endl;
-
-        double currentattendencep=0.0,pOfAttToadd=0.0,daysToAdd=0;
-        currentattendencep=(double)presentdays/(double)totNoOfDays;
+    unsigned noOfTC;int i,j;
+    cin>>noOfTC;
+    for(i=0;i<noOfTC;i++){
+        unsigned atstl;int pdays=0,adays=0,pPosDays=0;
+        cin>>atstl;
+        char attendence_string[atstl];
+        cin>>attendence_string;
 
         ///
-           // cout<<"db currentattendencep="<<currentattendencep<<endl<<" %needed to be added="<<(0.75-currentattendencep)<<endl;
-
-        if(currentattendencep>=0.75000){
-            cout<<((int)0)<<endl;
-            continue;
-        }
-        daysToAdd=((0.750000-currentattendencep)*totNoOfDays);
-        ///
-            //cout<<" no of days to add="<<daysToAdd<<endl;
-
-
-        //daysToAdd=ceil(daysToAdd);
-
-
-        ///
-            //cout<<"db2      "<<daysToAdd<<endl;
-
-        for(int l2=2;l2<=(totNoOfDays-1-2);l2++){
-            //scan attendednce
-            if(attendence[l2]=='A'){
-                ///
-                    //cout<<"l2="<<l2<<"has A ab"<<endl;
-                if((attendence[l2-1]=='P'||attendence[l2-2]=='P')&&(attendence[l2+1]=='P'||attendence[l2+2]=='P')){
-                    noofdaysproxiespossible++;
-                      ///
-                        //cout<<"proxy markable on="<<l2+1<<"day"<<endl;
-
-                    //attendence[l2]='A';
-
-                }
+        //cout<<"\ndebug attendece string=\t:"<<attendence_string<<endl;
+        for(j=0;j<atstl;j++){
+            if(attendence_string[j]=='P'){
+                pdays++;
+            }
+            else if(attendence_string[j]=='A'){
+                adays++;
+            }
+            if(j>=2 && j<=(atstl-1-2)){
+                if((attendence_string[j-1]=='P'||attendence_string[j-2]=='P')&&(attendence_string[j+1]=='P'||attendence_string[j+2]=='P'))
+                    pPosDays++;
             }
 
-
-
-
-
         }
-        if(noofdaysproxiespossible<daysToAdd){
-                cout<<(int)-1<<endl;
+        double pOfatt=(pdays/(double)atstl); //cout<<"prsent days="<<pdays<<"\ndebug percent of attend=\t:"<<pOfatt<<endl;///
+        double reqRemPerat=(0.75-pOfatt);  //cout<<"\ndebug req remaining percent=\t:"<<reqRemPerat<<endl;///
+        double daysTodoproxy=ceil(reqRemPerat*atstl); //cout<<"\ndebug days to do proxy=\t:"<<daysTodoproxy<<endl;///
+        int m1=-1;
+        if(daysTodoproxy<pPosDays)
+            cout<<daysTodoproxy<<endl;
+        else
+            cout<<m1<<endl;
 
-            }
-            else{
-                cout<<ceil(daysToAdd)<<endl;
-            }
 
 
     }
