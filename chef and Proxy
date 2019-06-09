@@ -97,3 +97,40 @@ int main() {
 }
 
 
+
+
+import math
+j=int(input())
+i=j
+while(i>0):
+	i=i-1
+	n=int(input())
+	pdays=0
+	adays=0
+	attStr=str(input())
+	si=0
+	pprox=0
+	for x in attStr:
+		if(x=='P'):
+			pdays=pdays+1
+		elif(x=='A'):
+			adays=adays+1
+		if(si>1 and si<(len(attStr)-2)):
+			if(attStr[si]=='A'):
+				if(attStr[si-1]=='P' or attStr[si-2]=='P'):
+					if(attStr[si+1]=='P' or attStr[si+2]=='P'):
+						pprox=pprox+1
+		si=si+1
+	#print('pprox =',pprox)
+	attp=pdays/len(attStr);#print(attp)
+	reqrem=0.7500-attp;	#print(reqrem)
+	pdtoadd=math.ceil((reqrem*float(n))); #print(pdtoadd)
+	if(attp>=0.75):
+		print(0)
+	elif(pdtoadd<=pprox):
+		print(pdtoadd)
+	else:
+		print(-1)
+
+
+
