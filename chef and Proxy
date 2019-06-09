@@ -49,47 +49,67 @@ using namespace std;
 
 
 int main() {
-    int totNoOfDays,i,j,k,ntc;
+    int totNoOfDays,ntc;
     cin>>ntc;
     for(int l1=0;l1<ntc;l1++){
         int noofdaysproxiespossible=0,presentdays=0,absentdays=0;
 
         cin>>totNoOfDays;
-        char attendence[totNoOfDays];
+        char attendence[totNoOfDays+1];
         for(int l2=0;l2<totNoOfDays;l2++){
             //scan attendednce
             cin>>attendence[l2];
         }
+        attendence[totNoOfDays]='\0';
+          ///
+        //cout<<"attendence="<<attendence<<endl;
+
+
         for(int l2=0;l2<totNoOfDays;l2++){
             //scan attendednce
             if(attendence[l2]=='P')
                 presentdays++;
+
             else if(attendence[l2]=='A')
                 absentdays++;
         }
+        ///
+        //cout<<"debug present days="<<presentdays<<" absent days="<<absentdays<<endl;
+
         double currentattendencep=0.0,pOfAttToadd=0.0,daysToAdd=0;
         currentattendencep=(double)presentdays/(double)totNoOfDays;
 
         ///
-        //cout<<"db"<<currentattendencep<<endl;
+           // cout<<"db currentattendencep="<<currentattendencep<<endl<<" %needed to be added="<<(0.75-currentattendencep)<<endl;
 
-        if(currentattendencep>=0.75){
+        if(currentattendencep>=0.75000){
             cout<<((int)0)<<endl;
             continue;
         }
-        daysToAdd=((0.75-currentattendencep)*totNoOfDays);
-        daysToAdd=ceil(daysToAdd);
+        daysToAdd=((0.750000-currentattendencep)*totNoOfDays);
+        ///
+            //cout<<" no of days to add="<<daysToAdd<<endl;
+
+
+        //daysToAdd=ceil(daysToAdd);
 
 
         ///
-       // cout<<"db2"<<daysToAdd<<endl;
+            //cout<<"db2      "<<daysToAdd<<endl;
 
-        for(int l2=2;l2<=(totNoOfDays-2);l2++){
+        for(int l2=2;l2<=(totNoOfDays-1-2);l2++){
             //scan attendednce
-
-            if(attendence[l2-1]=='P'&&attendence[l2-2]=='P'&&attendence[l2+1]=='P'&&attendence[l2+2]=='P'){
+            if(attendence[l2]=='A'){
+                ///
+                    //cout<<"l2="<<l2<<"has A ab"<<endl;
+                if((attendence[l2-1]=='P'||attendence[l2-2]=='P')&&(attendence[l2+1]=='P'||attendence[l2+2]=='P')){
                     noofdaysproxiespossible++;
+                      ///
+                        //cout<<"proxy markable on="<<l2+1<<"day"<<endl;
 
+                    //attendence[l2]='A';
+
+                }
             }
 
 
@@ -98,11 +118,11 @@ int main() {
 
         }
         if(noofdaysproxiespossible<daysToAdd){
-                cout<<((int)-1)<<endl;
+                cout<<(int)-1<<endl;
 
             }
             else{
-                cout<<daysToAdd<<endl;
+                cout<<ceil(daysToAdd)<<endl;
             }
 
 
