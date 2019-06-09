@@ -39,37 +39,23 @@ Date Added:	25-04-2019
 Time Limit:	1 secs
 Source Limit:	50000 Bytes
 import math
-import math
-
-def myfunc(parlist):
-	sumvar=int(0)
-	for temv in parlist[0]:
-		sumvar=sumvar+temv	
-	if(sumvar%10==0):		
-		parlist[1]=parlist[1]+1
-		if(parlist[1]==n):
-			print(int(parlist[4]))
-			parlist[3]=parlist[3]+8
-			return 1
-		else:
-			return 0
-	
 				#t1=[int(x) for x in str(k)]
 j=int(input())
 i=j
-while(i>0):	
-	place=0
+while(i>0):
 	i=i-1
 	n=int(input())
-	k=1
-	while(k<(2**64)):
-		k=k+1
-		strnumv=str(int(k))
-		listnum=[int(x) for x in strnumv]
-		parlist=[listnum,place,n,k,strnumv]
-		if(myfunc(parlist)==1):	
-			k=parlist[3]		
+
+	num=int(n*10)
+
+	#num=int(num*100)
+	lisnum=[int(x1) for x1 in str(num)]
+	k=0
+	vssum=0
+	vssum=sum(lisnum)
+	#print('debug vssum=',vssum)
+	loop=range(9,-1,-1)
+	for x in loop:
+		if (vssum+x)%10==0:
+			print(num+x)
 			break
-		else:			
-			place=parlist[1]
-			continue
