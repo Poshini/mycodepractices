@@ -39,6 +39,7 @@ Date Added:	25-04-2019
 Time Limit:	1 secs
 Source Limit:	50000 Bytes
 import math
+import math
 
 def myfunc(parlist):
 	sumvar=int(0)
@@ -48,9 +49,11 @@ def myfunc(parlist):
 		parlist[1]=parlist[1]+1
 		if(parlist[1]==n):
 			print(int(parlist[4]))
+			parlist[3]=parlist[3]+8
 			return 1
 		else:
 			return 0
+	
 				#t1=[int(x) for x in str(k)]
 j=int(input())
 i=j
@@ -64,7 +67,8 @@ while(i>0):
 		strnumv=str(int(k))
 		listnum=[int(x) for x in strnumv]
 		parlist=[listnum,place,n,k,strnumv]
-		if(myfunc(parlist)==1):			
+		if(myfunc(parlist)==1):	
+			k=parlist[3]		
 			break
 		else:			
 			place=parlist[1]
