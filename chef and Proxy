@@ -45,6 +45,7 @@ Languages:	C, CPP14, JAVA, PYTH, PYTH 3
 
 
 
+
 #include<iostream>
 #include<cstdlib>
 
@@ -73,8 +74,9 @@ int main() {
                 adays++;
             }
             if(j>=2 && j<=(atstl-1-2)){
-                if((attendence_string[j-1]=='P'||attendence_string[j-2]=='P')&&(attendence_string[j+1]=='P'||attendence_string[j+2]=='P'))
-                    pPosDays++;
+                if(attendence_string[j]=='A')
+                    if((attendence_string[j-1]=='P'||attendence_string[j-2]=='P')&&(attendence_string[j+1]=='P'||attendence_string[j+2]=='P'))
+                        pPosDays++;
             }
 
         }
@@ -93,4 +95,5 @@ int main() {
 
     return 0;
 }
+
 
