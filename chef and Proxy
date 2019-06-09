@@ -36,3 +36,78 @@ Date Added:	24-04-2019
 Time Limit:	1 secs
 Source Limit:	50000 Bytes
 Languages:	C, CPP14, JAVA, PYTH, PYTH 3
+
+
+
+#include<iostream>
+#include<cstdlib>
+
+#include<math.h>
+
+using namespace std;
+
+
+
+int main() {
+    int totNoOfDays,i,j,k,ntc;
+    cin>>ntc;
+    for(int l1=0;l1<ntc;l1++){
+        int noofdaysproxiespossible=0,presentdays=0,absentdays=0;
+
+        cin>>totNoOfDays;
+        char attendence[totNoOfDays];
+        for(int l2=0;l2<totNoOfDays;l2++){
+            //scan attendednce
+            cin>>attendence[l2];
+        }
+        for(int l2=0;l2<totNoOfDays;l2++){
+            //scan attendednce
+            if(attendence[l2]=='P')
+                presentdays++;
+            else if(attendence[l2]=='A')
+                absentdays++;
+        }
+        double currentattendencep=0.0,pOfAttToadd=0.0,daysToAdd=0;
+        currentattendencep=(double)presentdays/(double)totNoOfDays;
+
+        ///
+        //cout<<"db"<<currentattendencep<<endl;
+
+        if(currentattendencep>=0.75){
+            cout<<((int)0)<<endl;
+            continue;
+        }
+        daysToAdd=((0.75-currentattendencep)*totNoOfDays);
+        daysToAdd=ceil(daysToAdd);
+
+
+        ///
+       // cout<<"db2"<<daysToAdd<<endl;
+
+        for(int l2=2;l2<=(totNoOfDays-2);l2++){
+            //scan attendednce
+
+            if(attendence[l2-1]=='P'&&attendence[l2-2]=='P'&&attendence[l2+1]=='P'&&attendence[l2+2]=='P'){
+                    noofdaysproxiespossible++;
+
+            }
+
+
+
+
+
+        }
+        if(noofdaysproxiespossible<daysToAdd){
+                cout<<((int)-1)<<endl;
+
+            }
+            else{
+                cout<<daysToAdd<<endl;
+            }
+
+
+    }
+
+    return 0;
+}
+
