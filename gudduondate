@@ -38,7 +38,6 @@ Author:	4★kartik_354
 Date Added:	25-04-2019
 Time Limit:	1 secs
 Source Limit:	50000 Bytes
-
 import math
 
 def myfunc(parlist):
@@ -59,12 +58,13 @@ while(i>0):
 	place=0
 	i=i-1
 	n=int(input())
-	for k in range(1,2**64):
-		strnumv=str(k)
+	k=1
+	while(k<(2**64)):
+		k=k+1
+		strnumv=str(int(k))
 		listnum=[int(x) for x in strnumv]
 		parlist=[listnum,place,n,k,strnumv]
-		if(myfunc(parlist
-                          )==1):			
+		if(myfunc(parlist)==1):			
 			break
 		else:			
 			place=parlist[1]
