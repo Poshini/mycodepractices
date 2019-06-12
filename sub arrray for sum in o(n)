@@ -1,0 +1,122 @@
+Given an unsorted array A of size N of non-negative integers, find a continuous sub-array which adds to a given number S.
+
+Input:
+The first line of input contains an integer T denoting the number of test cases. Then T test cases follow. Each test case consists of two lines. The first line of each test case is N and S, where N is the size of array and S is the sum. The second line of each test case contains N space separated integers denoting the array elements.
+
+Output:
+For each testcase, in a new line, print the starting and ending positions(1 indexing) of first such occuring subarray from the left if sum equals to subarray, else print -1.
+
+Constraints:
+1 <= T <= 100
+1 <= N <= 107
+1 <= Ai <= 1010
+
+Example:
+Input:
+2
+5 12
+1 2 3 7 5
+10 15
+1 2 3 4 5 6 7 8 9 10
+Output:
+2 4
+1 5
+
+Explanation : 
+Testcase1: sum of elements from 2nd position to 4th position is 12
+Testcase2: sum of elements from 1st position to 5th position is 15
+
+** For More Input/Output Examples Use 'Expected Output' option **
+
+
+
+soln:
+n = int(input())
+for i in range(n):
+    arr_size, sum_to_find = 0, 0
+    arr_size, sum_to_find = input().split(' ')
+    arr_size = int(arr_size)
+    sum_to_find = int(sum_to_find)
+    arry = list(map(int, input().split()))
+    if sum(arry)<sum_to_find:
+        print(int(-1))
+        continue
+    vssum = int(0)
+    front_pointer = int(0)
+    found = False
+    for j in range(arr_size):
+        vssum += arry[j]
+        while vssum > sum_to_find:
+            vssum -= arry[front_pointer]
+            front_pointer += 1
+        else:
+            pass
+        if vssum == sum_to_find:
+            print(front_pointer+1, j+1)
+            break;
+if not found:
+    print(int(-1))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+o(n^2) not usefull
+n = int(input())
+for i in range(n):
+    arr_size, sum_to_find = input().split(' ')
+    arr_size=int(arr_size);sum_to_find=int(sum_to_find)
+    #arry=list(map(int, input().split()))
+    arry=[int(x) for x in input().split()]
+
+    #arry.sort();arry.reverse();
+    #arry=list[int(myx)for myx in input().split(' ')]
+    #if sum(arry)<sum_to_find:
+    #    print(int(-1))
+    #    continue
+    for j in range(arr_size):
+        vssum=int(0)
+        found=False
+        for k in range(j , arr_size):
+            vssum += arry[k]
+            if vssum > sum_to_find:
+                break;
+            if vssum == sum_to_find:
+                print(j+1,k+1)
+                found=True
+                break
+        if found:
+            break
+    if not found:
+        print(int(-1))
+
