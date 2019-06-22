@@ -111,7 +111,6 @@ In the second test case, N=9. As was shown in the Illustration in the problem st
 
 
 
-
 from functools import reduce
 from itertools import permutations
 
@@ -119,6 +118,12 @@ from itertools import permutations
 def factors(n):
     return set(reduce(list.__add__,
                       ([i, n // i] for i in range(1, int(n ** 0.5) + 1) if n % i == 0)))
+#a(n) = n * a(n-1) + (n-1) * a(n-2), a(0) = 1, a(1) = 1
+def myfunc(myint):
+    if(myint==0 or myint==1):
+        return 1
+    return myint * myfunc(myint - 1) + (myint - 1) * myfunc(myint - 2)
+
 
 nooftimes = int(input())
 for this1 in range(nooftimes):
@@ -128,41 +133,17 @@ for this1 in range(nooftimes):
 
     listoffactorials.sort()
     permOfFactList = permutations(listoffactorials)
-    #c1=permOfFactList
-    #c2=permOfFactList
-    #perLength=sum(1 for x in c1)
-    #c1=c2
-    #reqList = []
 
-    count=(0)
-    #for i in permOfFactList:
-    #    #print(i)
-    #    if checklist(i, listoffactorials):
-    #        count+=1
-
-
-    # -------
     vslen=len(listoffactorials)
-    flag=True
-    for i in permOfFactList:
-        #print(i)
-        flag = True
-        for this in range(1, vslen):
-            #print('real deb',listoffactorials.index(i[this]), (listoffactorials.index(i[this - 1]) + 1), end='\n')
-            if listoffactorials.index(i[this]) == (listoffactorials.index(i[this - 1]) + 1):
-                flag = False
-                break
-        if flag == True:
-            count += 1
-            #print('count inc')
-
-    #print(count)
-
-
-    if len(listoffactorials) == 1:
+    # -------
+    if vslen>2:
+        count=myfunc(vslen-1)
+    if vslen==2:
+        print(int(1),end='')
+    elif vslen==1:
         print(int(0),end='')
     else:
-        print(count, end='')
-    if this1 != nooftimes - int(1) and nooftimes != 1:
+        print(count,end='')
+    if this1 != (nooftimes-1):
         print()
 
