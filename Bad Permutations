@@ -112,8 +112,6 @@ In the second test case, N=9. As was shown in the Illustration in the problem st
 
 
 
-
-
 from functools import reduce
 from itertools import permutations
 
@@ -122,39 +120,49 @@ def factors(n):
     return set(reduce(list.__add__,
                       ([i, n // i] for i in range(1, int(n ** 0.5) + 1) if n % i == 0)))
 
-
-def checklist(mylist, checkList):
-    # print('deb2',mylist,checkList)
-    for this in range(1, len(mylist)):
-        # print('real deb',checkList.index(mylist[this]),(checkList.index(mylist[this]) +1),end='--')
-        if checkList.index(mylist[this]) == (checkList.index(mylist[this - 1]) + 1):
-            return False
-    return True
-
-
 nooftimes = int(input())
-for this in range(nooftimes):
+for this1 in range(nooftimes):
     numbervs = int(input())
     listoffactorials = list(factors(numbervs))
 
 
     listoffactorials.sort()
-    permOfFactList = list(permutations(listoffactorials))
-    reqList = []
+    permOfFactList = permutations(listoffactorials)
+    #c1=permOfFactList
+    #c2=permOfFactList
+    #perLength=sum(1 for x in c1)
+    #c1=c2
+    #reqList = []
 
-    for i in range(len(permOfFactList)):
-        if checklist(permOfFactList[i], listoffactorials):
-            reqList.append(permOfFactList[i])
+    count=(0)
+    #for i in permOfFactList:
+    #    #print(i)
+    #    if checklist(i, listoffactorials):
+    #        count+=1
 
-    if (len(listoffactorials)) == 1:
+
+    # -------
+    vslen=len(listoffactorials)
+    flag=True
+    for i in permOfFactList:
+        #print(i)
+        flag = True
+        for this in range(1, vslen):
+            #print('real deb',listoffactorials.index(i[this]), (listoffactorials.index(i[this - 1]) + 1), end='\n')
+            if listoffactorials.index(i[this]) == (listoffactorials.index(i[this - 1]) + 1):
+                flag = False
+                break
+        if flag == True:
+            count += 1
+            #print('count inc')
+
+    #print(count)
+
+
+    if len(listoffactorials) == 1:
         print(int(0),end='')
     else:
-        print(len(reqList), end='')
-    if this != (nooftimes - 1):
+        print(count, end='')
+    if this1 != nooftimes - int(1) and nooftimes != 1:
         print()
-  #  print('deb', reqList)
 
-    #print('deb11', comblis)
-    #print('deb12', permOfFactList)
-
-    # print('deb1',permOfFactList)
