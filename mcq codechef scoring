@@ -1,0 +1,26 @@
+nooftestcases = int(input())
+for temp1 in range(nooftestcases):
+    noofquestions=int(input())
+    mark=int(0)
+    correctans=str(input())
+
+    chefans=str(input())
+    flag=False
+    for i in range(noofquestions):
+        if flag:
+            flag = False
+            continue
+        elif(correctans[i]==chefans[i]):
+            mark+=1
+            #print('increamenting at:',i,'mark=',mark)
+        elif(chefans[i]=='N'):
+            continue
+        else:
+            flag=True
+
+
+    print(int(mark),end='')
+    if temp1 != (noofquestions-1):
+        print()
+
+
