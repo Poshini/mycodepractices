@@ -1,0 +1,83 @@
+– Marbles in the Bag.
+
+There are 2 teams. Each team requires S1 and S2 number of marbles respectively to play the game. There are 4 colours of marbles Black, White, Green and Yellow. Each marble is numbered.
+
+Given 2 prime numbers X and Y as input, all the marbles whose number is
+
+Divisible by X is White
+
+Divisible by Y is Black
+
+Divisible by X*Y is Green
+
+And the rest are Yellow.
+
+Team1 can only have Black and Yellow marbles
+
+Team2 can only have White and Yellow marbles.
+
+Given S1, S2, X and Y, find the minimum number of marbles required in the bag for both the teams to be able to play the game.
+
+
+
+
+
+
+
+
+
+
+
+
+s1 = int(input())
+s2 = int(input())
+x = int(input())
+y = int(input())
+t1 = []
+ft1 = False
+ft2 = False
+t2 = []
+f = '''Divisible by X is White
+
+Divisible by Y is Black
+
+Divisible by X*Y is Green
+
+And the rest are Yellow.
+
+Team1 can only have Black and Yellow marbles
+
+Team2 can only have White and Yellow marbles.'''
+i=0
+while True:
+    i+=1
+    d = False
+    if i % x == 0:
+        # its white
+        if not ft2:
+            t2.append(i)
+            d = True
+    if (not d) and i % y == 0:
+        # its black
+        if not ft1:
+            t1.append(i)
+            d = True
+    if (not d) and i % (x * y) == 0:
+        # green not used
+        d=True
+        pass
+    if not d:
+        # its yellow
+        if not ft1:
+            t1.append(i)
+        elif not ft2:
+            t1.append(i)
+    if len(t1) == s1:
+        ft1 = True
+    if len(t2) == s2:
+        ft2 = True
+    if ft1 and ft2:
+        print(i)
+        exit(0)
+
+print('cant')
