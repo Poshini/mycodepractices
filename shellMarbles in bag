@@ -80,4 +80,21 @@ while True:
         print(i)
         exit(0)
 
-print('cant')
+
+
+
+
+
+– Distinct Flowers
+
+From a list of N number of flowers, the girl selects first K flowers.  Among these K flowers, indicate how many selected are distinct considering that each type of flower is numbered and same type of flower is given the same number.
+
+Very easy, but yeah.
+
+
+
+print('enter the list of flowers array number in a single line seperateed by spaces.')
+myl=list(map(int,input().split()))
+k=int(input('enter k : '))
+myset=set(myl[:k])
+print(len(myset))
